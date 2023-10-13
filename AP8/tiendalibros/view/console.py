@@ -12,7 +12,7 @@ class UIConsola:
     def __init__(self):
         self.tienda_libros: TiendaLibros = TiendaLibros()
         self.opciones = {
-            "1": self.adicionar_un_libro_a_catalogo,
+            "1": self.adicionar_libro_a_catalogo,
             "2": self.agregar_libro_a_carrito_de_compras,
             "3": self.retirar_libro_de_carrito_de_compras,
             "4": self.salir
@@ -63,13 +63,13 @@ class UIConsola:
         except Exception as e:
             print(f"Error desconocido: {e}")
 
-    def adicionar_un_libro_a_catalogo(self):
+    def adicionar_libro_a_catalogo(self):
         isbn = input("Ingrese el ISBN del libro: ")
         titulo = input("Ingrese el título del libro: ")
         precio = float(input("Ingrese el precio del libro: "))
         existencias = int(input("Ingrese la cantidad de existencias: "))
         try:
-            self.tienda_libros.adicionar_un_libro_a_catalogo(isbn, titulo, precio, existencias)
+            self.tienda_libros.adicionar_libro_a_catalogo(isbn, titulo, precio, existencias)
             print("Libro agregado al catálogo con éxito.")
         except LibroExistenteError as e:
             print(f"Error: {e}")
