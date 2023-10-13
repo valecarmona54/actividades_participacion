@@ -9,14 +9,14 @@ class TiendaLibros:
         self.catalogo={}
         self.carrito = CarroCompras()  
 
-    def adicionar_libro_a_catálogo (self, isbn:str, titulo:str, precio:float, existencias:int)->Libro():
+    def adicionar_libro_a_catalogo (self, isbn:str, titulo:str, precio:float, existencias:int)->Libro:
         if isbn in self.catalogo:
             raise LibroExistenteError(isbn)
         nuevo_libro =Libro(isbn, titulo, precio, existencias)
         self.catalogo[isbn] = nuevo_libro
         return nuevo_libro
     
-    def agregar_libro_a_carrito (self, isbn, cantidad):
+    def agregar_libro_a_carrito_de_compras (self, isbn, cantidad):
         libro =self.catalogo.get(isbn)
 
         if libro.existencias==0:
@@ -27,8 +27,9 @@ class TiendaLibros:
 
         self.carrito.agregar_item(libro, cantidad)
 
-    def  retirar_item_de_carrito(self, isbn):
+    def  retirar_libro_de_carrito_de_compras(self, isbn):
         self.carrito.quitar_item(isbn) 
+             
              
 
 
